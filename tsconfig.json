@@ -1,0 +1,17 @@
+{
+  // 컴파일할 파일들을 지정하는 속성 (와일드 카드 패턴으로 묶어 표현)
+  "include": [
+    "src/**/*.ts",
+  ],
+  // 컴파일 대상에서 제외할 파일들을 지정하는 속성
+  "exclude": [ "node_modules", "**/*.test.ts" ],
+  "compilerOptions": {
+    "target": "es5",
+    "module" : "commonjs",
+    "outDir" : "dist",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true
+  }
+}
