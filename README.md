@@ -24,7 +24,9 @@ https://www.infura.io/faucet/sepolia
 - npm 10.5.0
 - express 4.19.2
 - typescript 5.4.5
-- ethers.js
+- eslint 8.57.0
+- prettier 3.2.5
+- ethers.js 6.12.1
 
 ## Install
 ```
@@ -37,4 +39,99 @@ npm install
 ```
 
 ## Usage
-To be continue...
+1. GET: create mnemonic and master address
+``` 
+//reqeust
+http://localhost:3000/api/eth/createMasterAddress
+
+//response
+{
+    "info": {
+        "mnemonic": "drama digital tray anger embark grape connect zero heart dragon bunker burger",
+        "prvKey": "0xd4b3eed8f8ef83071b67ac0dc2c1f39afdfa91ea3589861f55bd5acd4ebdb4b5",
+        "address": "0xFa84a2a11C60D3aD143db60f1BC3f8e011FCf15e"
+    }
+}
+```
+2. POST: create child address
+``` 
+//request
+http://localhost:3000/api/eth/createChildAddress
+{
+    "mnemonic": "drama digital tray anger embark grape connect zero heart dragon bunker burger",
+    "startnum": 2,
+    "count": 3
+}
+
+//response
+{
+    "addresses": [
+        {
+            "index": 2,
+            "address": "0x929b3A7e3A710273E6A702c08f7d4731db9C2Ef5"
+        },
+        {
+            "index": 3,
+            "address": "0xFcA8aAD8FdEe6B42117a1e78C5DA9f72048EC4Fe"
+        },
+        {
+            "index": 4,
+            "address": "0xD9a222070A9B0F744aefa9aC8C2B26dCefff74Be"
+        }
+    ]
+}
+```
+3. POST: send transaction
+``` 
+//request
+{
+    "to": "0x92d3267215Ec56542b985473E73C8417403B15ac",
+    "value": "0.0002"
+}
+
+//response
+{
+    "TransactionHash": "0xfdf6416bcd0106aef2016e24925c81f4f88cefeacf9532466db71d20c8deecb5"
+}
+```
+4. GET: get balance
+``` 
+//request
+http://localhost:3000/api/eth/getBalance?address=0xd0964dD5d4c0b264484DCEb8dEE2e10174188325
+
+//response
+{
+    "balance": "0.0 ETH"
+}
+```
+5. GET: get fee data
+``` 
+//request
+http://localhost:3000/api/eth/getGasPrice
+
+//response
+{
+    "feeData": "{\"_type\":\"FeeData\",\"gasPrice\":\"600570958\",\"maxFeePerGas\":\"601141916\",\"maxPriorityFeePerGas\":\"600000000\"}"
+}
+```
+6. GET: get nonce
+``` 
+//request
+http://localhost:3000/api/eth/getNonce?address=0xd0964dD5d4c0b264484DCEb8dEE2e10174188325
+
+//response
+{
+    "data": "7"
+}
+```
+7. GET: checksum address
+``` 
+//request
+http://localhost:3000/api/eth/checksumAddress?address=0xd0964dD5d4c0b264484DCEb8dEE2e10174188325
+
+//response
+address is valid:
+or
+Something failed!! invalid address (argument="address", value="0xd0964dD5d4c0b264484DCEb8dEE2e1017418832",
+code=INVALID_ARGUMENT, version=6.12.1)
+```
