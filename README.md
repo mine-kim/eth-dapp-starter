@@ -16,7 +16,7 @@ ethers.js: https://docs.ethers.org/v6/
 >Sign up for Infura and get an API key. <br />
 Infura: https://app.infura.io/ <br />
 And  get testnet Ether(sepolia) <br />
-https://www.infura.io/faucet/sepolia 
+https://www.infura.io/faucet/sepolia
 
 ## Features
 - nvm 0.39.7
@@ -30,7 +30,16 @@ https://www.infura.io/faucet/sepolia
 
 ## Install
 ```
+git clone https://github.com/mine-kim/eth-dapp-starter.git
+cd ./eth-dapp-starter
 npm install
+
+//create env file
+vi .env
+
+PORT=3000
+INFURA_API_KEY=<YOUR_API_KEY>
+PRIVATE_KEY=<YOUR_WALLET_PRIVATE_KEY>
 ```
 
 ## How to Run
@@ -68,15 +77,15 @@ http://localhost:3000/api/eth/createChildAddress
     "addresses": [
         {
             "index": 2,
-            "address": "0x929b3A7e3A710273E6A702c08f7d4731db9C2Ef5"
+            "address": "0x99603362d3F6af2C5274B21446E4422390927f10"
         },
         {
             "index": 3,
-            "address": "0xFcA8aAD8FdEe6B42117a1e78C5DA9f72048EC4Fe"
+            "address": "0xe8340E1922076874C944Eee988457Fca2A798C46"
         },
         {
             "index": 4,
-            "address": "0xD9a222070A9B0F744aefa9aC8C2B26dCefff74Be"
+            "address": "0xfDF18749C9a4E4c53fAC3ea66Ac3b57A7b73306D"
         }
     ]
 }
@@ -85,7 +94,7 @@ http://localhost:3000/api/eth/createChildAddress
 ``` 
 //request
 {
-    "to": "0x92d3267215Ec56542b985473E73C8417403B15ac",
+    "to": "0x9E28854441B7675c1247b9b293e7DB2fE9E50c49",
     "value": "0.0002"
 }
 
