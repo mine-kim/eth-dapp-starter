@@ -1,6 +1,6 @@
 type Address = {
-    index: number,
-    address: string
-}
+  index: number;
+  address: string;
+};
 
-export type {Address};
+export type { Address };

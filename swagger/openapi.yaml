@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: ETH DAPP API docs
+  description: ETH DAPP STARTER
+  license:
+    name: mh
+servers:
+  - url: http://localhost:{port}
+    variables:
+      port:
+        default: '3001'
+
+components:
+  parameters: null
+  #Schemas : model 정보
+  schemas:
+    create:
+      properties:
+        mnemonic:
+          type: string
+          description: 니모닉키
+        startnum:
+          type: number
+          description: path 시작 번호
+        count:
+          type: number
+          description: 생성할 주소 갯수
+    send:
+      properties:
+        to:
+          type: string
+          description: 보낼 주소
+        value:
+          type: string
+          description: 보낼 수량
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+  #Examples
+  examples:
+    createExample:
+      value:
+        {
+          "mnemonic": " digital tray anger embark grape connect zero heart dragon bunker burger",
+          "startnum": 0,
+          "count": 3
+        }
+    sendExample:
+      value:
+        {
+          "to": "0x9E28854441B7675c1247b9b293e7DB2fE9E50c49",
+          "value": "0.0002"
+        }
+
+  #Responses 재사용되는 애들
+  responses:
+    successResponse:
+      description: successful request with no data
+      content:
+        application/json:
+          schema:
+            type: object
+            example: {"status": 200, "success": true, "message": "message"}
+    BadRequest:
+      description: 잘못된 요청
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            success: false
+            message: 잘못된 요청
+    InternalServerError:
+      description: 서버 에러
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            success: false
+            message: 서버 내부 오류
+
+#Paths api 경로 지정, paths에 추가한 순서로 작성된다.
+paths:
+  /api/eth/createMasterAddress:
+    $ref: './eth.yaml#/~1createMasterAddress'
+  /api/eth/createChildAddress:
+    $ref: './eth.yaml#/~1createChildAddress'
+  /api/eth/sendTransaction:
+    $ref: './eth.yaml#/~1sendTransaction'
+  /api/eth/getBalance/{address}:
+    $ref: './eth.yaml#/~1getBalance~1{address}'
+  /api/eth/getGasPrice:
+    $ref: './eth.yaml#/~1getGasPrice'
+  /api/eth/getNonce/{address}:
+    $ref: './eth.yaml#/~1getNonce~1{address}'
+  /api/eth/checksumAddress/{address}:
+    $ref: './eth.yaml#/~1checksumAddress~1{address}'

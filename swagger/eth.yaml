@@ -1,0 +1,199 @@
+/createChildAddress:
+  post:
+    tags:
+      - eth
+    summary: 마스터 키로 주소 생성
+    consumes:
+      - application/json
+    requestBody:
+      x-name: body
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './openapi.yaml#/components/schemas/create'
+          examples:
+            createExample:
+              $ref: './openapi.yaml#/components/examples/createExample'
+    responses:
+      '200':
+        $ref: './openapi.yaml#/components/responses/successResponse'
+      '400':
+        $ref: './openapi.yaml#/components/responses/BadRequest'
+      '500':
+        $ref: './openapi.yaml#/components/responses/InternalServerError'
+/sendTransaction:
+  post:
+    tags:
+      - eth
+    summary: 다른 주소로 출금하기
+    consumes:
+      - application/json
+    requestBody:
+      x-name: body
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './openapi.yaml#/components/schemas/send'
+          examples:
+            createExample:
+              $ref: './openapi.yaml#/components/examples/sendExample'
+    responses:
+      '200':
+        $ref: './openapi.yaml#/components/responses/successResponse'
+      '400':
+        $ref: './openapi.yaml#/components/responses/BadRequest'
+      '500':
+        $ref: './openapi.yaml#/components/responses/InternalServerError'
+/createMasterAddress:
+  get:
+    tags:
+      - eth
+    summary: 니모닉키 생성
+    responses:
+      '200':
+        description: 니모닉키 생성 성공
+        content:
+          application/json:
+            schema:
+              type: object
+              example: {
+                "status": 200,
+                "success": true,
+                "data": {
+                  "info": {
+                    "mnemonic": "dumb wrap have glove huge cabbage voyage coffee gold still area agree",
+                    "prvKey": "0xda59c0886034c670d88b1e59ff9a099f7baf5f6bafaca07af10fa6a5e9af6460",
+                    "address": "0xc4a29d1A64366FAd36d373efB74e25Ea18d21B18"
+                  }
+                }
+              }
+      '400':
+        $ref: './openapi.yaml#/components/responses/BadRequest'
+      '500':
+        $ref: './openapi.yaml#/components/responses/InternalServerError'
+/getBalance/{address}:
+  get:
+    tags:
+      - eth
+    summary: 주소 잔금 조회
+    parameters:
+      - in: path
+        name: address
+        required: true
+        description: 주소 잔금 조회
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 주소 잔금 조회 성공
+        content:
+          application/json:
+            schema:
+              type: object
+              example: {
+                "status": 200,
+                "success": true,
+                "data": {
+                  {
+                    "balance": "0.0 ETH"
+                  }
+                }
+              }
+      '400':
+        $ref: './openapi.yaml#/components/responses/BadRequest'
+      '500':
+        $ref: './openapi.yaml#/components/responses/InternalServerError'
+/getGasPrice:
+  get:
+    tags:
+      - eth
+    summary: 현재 가스 가격 조회
+    responses:
+      '200':
+        description: 현재 가스 가격 조회
+        content:
+          application/json:
+            schema:
+              type: object
+              example: {
+                "status": 200,
+                "success": true,
+                "data": {
+                  "feeData": {
+                    "_type": "FeeData",
+                    "gasPrice": "4537383063",
+                    "maxFeePerGas": "9064766126",
+                    "maxPriorityFeePerGas": "10000000"
+                  }
+                }
+              }
+      '400':
+        $ref: './openapi.yaml#/components/responses/BadRequest'
+      '500':
+        $ref: './openapi.yaml#/components/responses/InternalServerError'
+/getNonce/{address}:
+  get:
+    tags:
+      - eth
+    summary: 주소 nonce 조회
+    parameters:
+      - in: path
+        name: address
+        required: true
+        description: 주소 nonce 조회
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 주소 nonce 조회 성공
+        content:
+          application/json:
+            schema:
+              type: object
+              example: {
+                "status": 200,
+                "success": true,
+                "data": {
+                  {
+                    "nonce": "0"
+                  }
+                }
+              }
+      '400':
+        $ref: './openapi.yaml#/components/responses/BadRequest'
+      '500':
+        $ref: './openapi.yaml#/components/responses/InternalServerError'
+/checksumAddress/{address}:
+  get:
+    tags:
+      - eth
+    summary: 주소 검증
+    parameters:
+      - in: path
+        name: address
+        required: true
+        description: 주소 검증
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 주소 검증 성공
+        content:
+          application/json:
+            schema:
+              type: object
+              example: {
+                "status": 200,
+                "success": true,
+                "data": {
+                  {
+                    "addressValidation": true
+                  }
+                }
+              }
+      '400':
+        $ref: './openapi.yaml#/components/responses/BadRequest'
+      '500':
+        $ref: './openapi.yaml#/components/responses/InternalServerError'
