@@ -26,8 +26,8 @@ export const createMasterAddress = async (
       address: await wallet.getAddress()
     };
     console.log(`Master address info: "${JSON.stringify(info)}"`);
-
-    return res.status(200).send({ info: info });
+    res.locals.apiResponse = { info: info };
+    next();
   } catch (err) {
     next(err);
   }
@@ -66,8 +66,8 @@ export const createChildAddress = async (
       addresses.push({ index: index, address: address });
     }
     console.log(`Addresses: "${JSON.stringify(addresses)}"`);
-
-    return res.status(200).send({ addresses: addresses });
+    res.locals.apiResponse = { addresses: addresses };
+    next();
   } catch (err) {
     next(err);
   }
@@ -97,8 +97,8 @@ export const sendTransaction = async (
       value: ethers.parseUnits(value, 'ether')
     });
     console.log(`TransactionHash: "${tx.hash}"`);
-
-    return res.status(200).send({ TransactionHash: tx.hash });
+    res.locals.apiResponse = { TransactionHash: tx.hash }
+    next();
   } catch (err) {
     next(err);
   }
@@ -119,7 +119,8 @@ export const getBalance = async (
         // convert a currency unit from wei to ether
         const balanceInEth = ethers.formatEther(balance);
         console.log(`balance: ${balanceInEth} ETH`);
-        return res.status(200).send({ balance: `${balanceInEth} ETH` });
+        res.locals.apiResponse = { balance: `${balanceInEth} ETH` }
+        next();
       });
   } catch (err) {
     next(err);
@@ -136,9 +137,8 @@ export const getGasPrice = async (
       .getFeeData()
       .then((feeData: FeeData) => {
         console.log(`getGasPrice: "${JSON.stringify(feeData)}"`);
-        return res
-          .status(200)
-          .send({ feeData: JSON.parse(JSON.stringify(feeData)) });
+        res.locals.apiResponse = feeData;
+        next();
       });
   } catch (err) {
     next(err);
@@ -157,8 +157,9 @@ export const getNonce = async (
     await getProvider()
       .getTransactionCount(ethers.getAddress(<string>address), 'latest')
       .then((nonce: number) => {
-        console.log(`nonce: ${nonce}`);
-        return res.status(200).send({ nonce: `${nonce}` });
+        console.log({ nonce: `${nonce}` });
+        res.locals.apiResponse = { nonce: nonce };
+        next();
       });
   } catch (err) {
     next(err);
@@ -175,7 +176,9 @@ export const checksumAddress = async (
     isNull(address, 'Address');
 
     ethers.getAddress(ethers.getAddress(<string>address));
-    return res.status(200).send({ addressValidation: true });
+    console.log({ addressValidation: true });
+    res.locals.apiResponse = { addressValidation: true };
+    next();
   } catch (err) {
     next(err);
   }
