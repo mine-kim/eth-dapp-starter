@@ -47,6 +47,47 @@ PRIVATE_KEY=<YOUR_WALLET_PRIVATE_KEY>
  npm run dev
 ```
 
+## SwaggerUI
+http://localhost:3001/api-docs/
+```
+ npm run api-docs
+```
+
+## Code Structure
+```
+├──📂 build
+│  └── swagger.yaml
+├──📂 common
+│  ├── common.ts
+│  └── type.ts
+├──📂 dist
+│  ├── auth.controller.ts
+│  └── users.controller.ts
+├──📂 middleware
+│  ├── commonError.ts
+│  ├── commonLog.ts
+│  └── responseFilter.ts
+├──📂 node_modules
+│  └── .....
+├──📂 router
+│  └── eth.ts
+├──📂 service
+│  └── eth.ts
+├──📂 swagger
+│  ├── eth.yaml
+│  └── openapi.yaml
+├── .env
+├── .gitignore
+├── .prettierrc.json
+├── Dockerfile
+├── eslint.config.mjs
+├── index.ts
+├── package-lock.json
+├── package.json
+├── README.md
+└── tsconfig.json
+```
+
 ## Usage
 1. GET: create mnemonic and master address
 ``` 
