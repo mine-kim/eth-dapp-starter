@@ -61,8 +61,11 @@ http://localhost:3001/api-docs/
 │  ├── common.ts
 │  └── type.ts
 ├──📂 dist
-│  ├── auth.controller.ts
-│  └── users.controller.ts
+│  ├── 📂 common
+│  ├── 📂 middleware
+│  ├── 📂 router
+│  ├── 📂 service
+│  └── index.js
 ├──📂 middleware
 │  ├── commonError.ts
 │  ├── commonLog.ts
