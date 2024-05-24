@@ -13,6 +13,11 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+//openAPI3
+const path = require('path');
+const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 // middleware - log
 app.use(commonLog);
 
@@ -27,12 +32,8 @@ app.use(responseFilter);
 // error handling
 app.use(commonError);
 
-//openAPI3
-const path = require('path');
-const swaggerSpec = YAML.load(path.join(__dirname, 'build/swagger.yaml'));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log('Server Listening on PORT:', PORT);
+  console.log(`Click URL: http://localhost:${PORT}`);
 });

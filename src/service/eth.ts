@@ -97,7 +97,7 @@ export const sendTransaction = async (
       value: ethers.parseUnits(value, 'ether')
     });
     console.log(`TransactionHash: "${tx.hash}"`);
-    res.locals.apiResponse = { TransactionHash: tx.hash }
+    res.locals.apiResponse = { TransactionHash: tx.hash };
     next();
   } catch (err) {
     next(err);
@@ -119,7 +119,7 @@ export const getBalance = async (
         // convert a currency unit from wei to ether
         const balanceInEth = ethers.formatEther(balance);
         console.log(`balance: ${balanceInEth} ETH`);
-        res.locals.apiResponse = { balance: `${balanceInEth} ETH` }
+        res.locals.apiResponse = { balance: `${balanceInEth} ETH` };
         next();
       });
   } catch (err) {

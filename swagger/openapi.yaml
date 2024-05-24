@@ -45,7 +45,7 @@ components:
     createExample:
       value:
         {
-          "mnemonic": " digital tray anger embark grape connect zero heart dragon bunker burger",
+          "mnemonic": "dumb wrap have glove huge cabbage voyage coffee gold still area agree",
           "startnum": 0,
           "count": 3
         }
@@ -82,7 +82,7 @@ components:
             $ref: "#/components/schemas/Error"
           example:
             success: false
-            message: 서버 내부 오류
+            message: [error massage]
 
 #Paths api 경로 지정, paths에 추가한 순서로 작성된다.
 paths:

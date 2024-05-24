@@ -13,13 +13,14 @@
   "name": "eth-dapp-starter",
   "description": "",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "src/server.ts",
   "scripts": {
     "build": "tsc -p .",
     "api-docs": "swagger-cli bundle ./swagger/openapi.yaml --outfile build/swagger.yaml --type yaml",
     "predev": "npm run api-docs",
-    "dev": "nodemon --watch \"*.ts\" --exec \"ts-node\" index.ts",
-    "start": "nodemon dist/index.js",
+    "dev": "nodemon --watch \"*.ts\" --exec \"ts-node\" src/server.ts",
+    "start": "pm2 start dist/server.js",
+    "docker": "npm run api-docs && npm run start",
     "lint": "eslint --fix '**/**/*.ts'",
     "prettier": "prettier --write --config ./.prettierrc.json '**/*.ts'"
   },

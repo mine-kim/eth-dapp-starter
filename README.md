@@ -42,9 +42,15 @@ INFURA_API_KEY=<YOUR_API_KEY>
 PRIVATE_KEY=<YOUR_WALLET_PRIVATE_KEY>
 ```
 
-## How to Run
+## How to Run(development)
 ```
  npm run dev
+```
+
+## How to Run(docker)
+```
+ docker build . -t eth-dapp:latest --target=dev
+ docker run -it -p 3001:3001 eht-dapp  
 ```
 
 ## Usage
