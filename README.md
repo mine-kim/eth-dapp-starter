@@ -51,8 +51,13 @@ PRIVATE_KEY=<YOUR_WALLET_PRIVATE_KEY>
 
 ## How to Run(docker)
 ```
- docker build . -t eth-dapp:latest
+//dev
+ docker build . -t eth-dapp:latest --target=dev
  docker run -it -p 3001:3001 eht-dapp  
+
+//prod
+ docker build . -t eth-dapp:latest --target=prod
+ docker run -it -p 3002:3002 eht-dapp  
 ```
 
 ## SwaggerUI
@@ -65,32 +70,40 @@ http://localhost:3001/api-docs/
 ```
 ├──📂 build
 │  └── swagger.yaml
-├──📂 common
-│  ├── common.ts
-│  └── type.ts
 ├──📂 dist
-│  ├── auth.controller.ts
-│  └── users.controller.ts
-├──📂 middleware
-│  ├── commonError.ts
-│  ├── commonLog.ts
-│  └── responseFilter.ts
+│  ├── common
+│  ├── middleware
+│  ├── router
+│  ├── service
+│  └── server.js
+├──📂 src
+│  ├──📂 common
+│  │  ├── common.ts
+│  │  └── type.ts
+│  ├──📂 middleware
+│  │  ├── commonError.ts
+│  │  ├── commonLog.ts
+│  │  └── responseFilter.ts
+│  ├──📂 router
+│  │  └── eth.ts
+│  ├──📂 service
+│  │  └── eth.ts
+│  └── server.ts
 ├──📂 node_modules
 │  └── .....
-├──📂 router
-│  └── eth.ts
-├──📂 service
-│  └── eth.ts
 ├──📂 swagger
 │  ├── eth.yaml
 │  └── openapi.yaml
+├── .dockerignore
 ├── .env
 ├── .gitignore
 ├── .prettierrc.json
+├── compose.yaml
 ├── Dockerfile
 ├── eslint.config.mjs
 ├── index.ts
 ├── package-lock.json
 ├── package.json
+├── README.Docker.md
 ├── README.md
 └── tsconfig.json

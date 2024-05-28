@@ -7,16 +7,25 @@ import commonLog from './middleware/commonLog';
 import responseFilter from './middleware/responseFilter';
 import commonError from './middleware/commonError';
 
+//dev, prod setting
+process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'prod' ) ? 'prod' : 'dev';
+
+const path = require('path');
 // config
-dotenv.config();
+if (process.env.NODE_ENV === 'prod') {
+  dotenv.config({ path: path.join(__dirname, '../.env.prod') })
+} else if (process.env.NODE_ENV === 'dev') {
+  dotenv.config({ path: path.join(__dirname, '../.env.dev') })
+}
 
 const app = express();
 app.use(express.json());
 
 //openAPI3
-const path = require('path');
-const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+if (process.env.NODE_ENV === 'dev') {
+  const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+}
 
 // middleware - log
 app.use(commonLog);
