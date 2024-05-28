@@ -1,0 +1,11 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: prod
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3002:3002
+    restart: "unless-stopped"

@@ -8,21 +8,22 @@ import responseFilter from './middleware/responseFilter';
 import commonError from './middleware/commonError';
 
 //dev, prod setting
-process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'prod' ) ? 'prod' : 'dev';
+process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'develop';
+console.log(process.env.NODE_ENV)
 
 const path = require('path');
 // config
-if (process.env.NODE_ENV === 'prod') {
-  dotenv.config({ path: path.join(__dirname, '../.env.prod') })
-} else if (process.env.NODE_ENV === 'dev') {
-  dotenv.config({ path: path.join(__dirname, '../.env.dev') })
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: path.join(__dirname, '../.env.production') })
+} else if (process.env.NODE_ENV === 'develop') {
+  dotenv.config({ path: path.join(__dirname, '../.env.develop') })
 }
 
 const app = express();
 app.use(express.json());
 
 //openAPI3
-if (process.env.NODE_ENV === 'dev') {
+if (process.env.NODE_ENV === 'develop') {
   const swaggerSpec = YAML.load(path.join(__dirname, '../build/swagger.yaml'));
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 }

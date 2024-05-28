@@ -36,9 +36,9 @@ cd ./eth-dapp-starter
 npm install
 
 //create env file
-vi .env
+vi .env.develop & .env.production 
 
-PORT=3000
+PORT=<PORT>
 ETH_NETWORK=sepolia
 INFURA_API_KEY=<YOUR_API_KEY>
 PRIVATE_KEY=<YOUR_WALLET_PRIVATE_KEY>
@@ -51,13 +51,19 @@ PRIVATE_KEY=<YOUR_WALLET_PRIVATE_KEY>
 
 ## How to Run(docker)
 ```
-//dev
+ //dev
  docker build . -t eth-dapp:latest --target=dev
  docker run -it -p 3001:3001 eht-dapp  
 
-//prod
+ //prod
  docker build . -t eth-dapp:latest --target=prod
  docker run -it -p 3002:3002 eht-dapp  
+```
+
+## How to Run(docker-compose)
+```
+ //prod
+ docker-compose up -d
 ```
 
 ## SwaggerUI

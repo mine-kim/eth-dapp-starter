@@ -15,11 +15,11 @@
   "version": "1.0.0",
   "main": "src/server.ts",
   "scripts": {
-    "build": "tsc -p .",
+    "build": "rm -rf ./dist && tsc -p .",
     "api-docs": "swagger-cli bundle ./swagger/openapi.yaml --outfile build/swagger.yaml --type yaml",
     "dev": "nodemon --watch \"*.ts\" --exec \"ts-node\" src/server.ts",
     "dev2": "npm run api-docs && npm run dev",
-    "start": "NODE_ENV=prod pm2-runtime start dist/server.js",
+    "start": "NODE_ENV=production pm2-runtime start dist/server.js",
     "stop": "pm2-runtime stop server",
     "lint": "eslint --fix '**/**/*.ts'",
     "prettier": "prettier --write --config ./.prettierrc.json '**/*.ts'"
