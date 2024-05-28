@@ -75,7 +75,8 @@ http://localhost:3001/api-docs/
 ```
  npm run api-docs
 ```
-![swwagerUI](./Users/dev/Downloads/sc.png)
+<img width="979" alt="sc" src="https://github.com/mine-kim/eth-dapp-starter/assets/74997870/7813a004-a8d0-4910-b4f0-eeabdca9926f">
+
 
 ## Code Structure
 ```
