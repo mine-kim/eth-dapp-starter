@@ -44,34 +44,39 @@ INFURA_API_KEY=<YOUR_API_KEY>
 PRIVATE_KEY=<YOUR_WALLET_PRIVATE_KEY>
 ```
 
-## How to Run(development)
+## How to Run
 ```
+ //development(swagger & nodemon)
  npm run dev
+ 
+ //production(pm2)
+ npm run start
 ```
 
-## How to Run(docker)
+## How to Run (docker)
 ```
  //dev
  docker build . -t eth-dapp:latest --target=dev
- docker run -it -p 3001:3001 eht-dapp  
+ docker run -it -p 3001:3001 eth-dapp  
 
  //prod
  docker build . -t eth-dapp:latest --target=prod
- docker run -it -p 3002:3002 eht-dapp  
+ docker run -it -p 3002:3002 eth-dapp  
 ```
 
-## How to Run(docker-compose)
+## How to Run (docker-compose)
 ```
  //prod
  docker-compose up -d
 ```
 
-## SwaggerUI
+## SwaggerUI (build: dev)
 http://localhost:3001/api-docs/
 ```
  npm run api-docs
 ```
-![sc.png](..%2Fsc.png)
+![swwagerUI](./Users/dev/Downloads/sc.png)
+
 ## Code Structure
 ```
 ├──📂 build
